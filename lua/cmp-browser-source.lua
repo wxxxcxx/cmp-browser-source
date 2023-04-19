@@ -12,6 +12,7 @@ end
 function source.start_server()
   source.server = browser_source_server.new()
   source.server:start({
+    port = source.server_port,
     onmessage = function(message)
       local items = {}
       local count = 0
@@ -25,7 +26,6 @@ function source.start_server()
 end
 
 function source.stop_server()
-  print(type(source.server))
   if source.server then
     source.server:close()
   end
@@ -45,7 +45,6 @@ function source:get_debug_name()
 end
 
 function source:complete(params, callback)
-  print(params.context.cursor_before_line)
   callback(self.items)
 end
 
